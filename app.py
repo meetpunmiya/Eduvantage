@@ -6,13 +6,13 @@ import streamlit.components.v1 as stc
 # Load EDA
 import pandas as pd 
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity,linear_kernel
+from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
 
 
 # Load Our Dataset
 def load_data(data):
-	df = pd.read_csv(data)
-	return df 
+	df1 = pd.read_csv(data)
+	return df1
 
 
 # Fxn
@@ -26,10 +26,9 @@ def vectorize_text_to_cosine_mat(data):
 	return cosine_sim_mat
 
 
-
 # Recommendation Sys
 @st.cache
-def get_recommendation(title,cosine_sim_mat,df,num_of_rec=10):
+def get_recommendation(title, cosine_sim_mat,df,num_of_rec=10):
 	# indices of the course
 	course_indices = pd.Series(df.index,index=df['course_title']).drop_duplicates()
 	# Index of course
@@ -90,29 +89,26 @@ def main():
 		if st.button("Recommend"):
 			if search_term is not None:
 				try:
-					
+					results = get_recommendation(search_term, cosine_sim_mat, df, num_of_rec)
+					with st.beta_expander("Results as JSON"):
+						results_json = results.to_dict('index')
+						st.write(results_json)
+
+					for row in results.iterrows():
+						rec_title = row[1][0]
+						rec_score = row[1][1]
+						rec_url = row[1][2]
+						rec_price = row[1][3]
+						rec_num_sub = row[1][4]
+
+						# st.write("Title",rec_title,)
+						stc.html(RESULT_TEMP.format(rec_title,rec_score,rec_url,rec_url,rec_num_sub),height=350)
+				except:
 					results= "Not Found"
 					st.warning(results)
 					st.info("Suggested Options include")
 					result_df = search_term_if_not_found(search_term,df)
 					st.dataframe(result_df)
-				
-					except:
-						results = get_recommendation(search_term,cosine_sim_mat,df,num_of_rec)
-						with st.beta_expander("Results as JSON"):
-							results_json = results.to_dict('index')
-							st.write(results_json)
-
-						for row in results.iterrows():
-							rec_title = row[1][0]
-							rec_score = row[1][1]
-							rec_url = row[1][2]
-							rec_price = row[1][3]
-							rec_num_sub = row[1][4]
-
-						# st.write("Title",rec_title,)
-							stc.html(RESULT_TEMP.format(rec_title,rec_score,rec_url,rec_url,rec_num_sub),height=350)
-				
 
 
 

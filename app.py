@@ -89,6 +89,10 @@ def main():
 		if st.button("Recommend"):
 			if search_term is not None:
 				try:
+					pass
+
+				except:
+
 					results = get_recommendation(search_term, cosine_sim_mat, df, num_of_rec)
 					with st.beta_expander("Results as JSON"):
 						results_json = results.to_dict('index')
@@ -102,8 +106,7 @@ def main():
 						rec_num_sub = row[1][4]
 
 						# st.write("Title",rec_title,)
-						stc.html(RESULT_TEMP.format(rec_title,rec_score,rec_url,rec_url,rec_num_sub),height=350)
-				except:
+						stc.html(RESULT_TEMP.format(rec_title, rec_score, rec_url, rec_url, rec_num_sub), height=350)
 					results= "Not Found"
 					st.warning(results)
 					st.info("Suggested Options include")

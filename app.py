@@ -108,8 +108,7 @@ def main():
 
     else:
         st.subheader("About")
-        st.text_area("At Eduvantage, 
-        we understand the importance of lifelong learning and the transformative power of education. Whether you're a student looking to enhance your academic journey, a professional aiming to upskill or reskill, or simply someone with a curious mind eager to explore new subjects, we're here to guide you every step of the way. Our mission is to simplify the process of finding the perfect course for you. With an ever-expanding database of meticulously handpicked courses across a variety of subjects and disciplines, we strive to match you with learning experiences that not only meet your needs but also inspire and empower you to reach new heights./nBy Meet Jain and Dhruv Saraswat")
+        st.text_area("At Eduvantage,\n\nwe understand the importance of lifelong learning and the transformative power of education. Whether you're a student looking to enhance your academic journey, a professional aiming to upskill or reskill, or simply someone with a curious mind eager to explore new subjects, we're here to guide you every step of the way. Our mission is to simplify the process of finding the perfect course for you. With an ever-expanding database of meticulously handpicked courses across a variety of subjects and disciplines, we strive to match you with learning experiences that not only meet your needs but also inspire and empower you to reach new heights./nBy Meet Jain and Dhruv Saraswat")
 
 
 if __name__ == '__main__':

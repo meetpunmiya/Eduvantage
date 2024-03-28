@@ -89,7 +89,11 @@ def main():
 		if st.button("Recommend"):
 			if search_term is not None:
 				try:
-					pass
+					results= "Not Found"
+					st.warning(results)
+					st.info("Suggested Options include")
+					result_df = search_term_if_not_found(search_term,df)
+					st.dataframe(result_df)
 
 				except:
 
@@ -107,11 +111,7 @@ def main():
 
 						# st.write("Title",rec_title,)
 						stc.html(RESULT_TEMP.format(rec_title, rec_score, rec_url, rec_url, rec_num_sub), height=350)
-					results= "Not Found"
-					st.warning(results)
-					st.info("Suggested Options include")
-					result_df = search_term_if_not_found(search_term,df)
-					st.dataframe(result_df)
+					
 
 
 
@@ -122,7 +122,7 @@ def main():
 
 	else:
 		st.subheader("About")
-		st.text("Built with Streamlit & Pandas")
+		st.text("Built with Streamlit & Pandas by Meet Jain and Dhruv Saraswat")
 
 
 if __name__ == '__main__':

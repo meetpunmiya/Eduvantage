@@ -84,7 +84,7 @@ def main():
             if search_term is not None:
                 try:
                     results = get_recommendation(search_term, cosine_sim_mat, df, num_of_rec)
-                    with st.beta_expander("Results as JSON"):
+                    with st.expander("Results as JSON"):
                         results_json = results.to_dict('index')
                         st.write(results_json)
                     for row in results.iterrows():

@@ -99,19 +99,19 @@ def main():
 				
 					except:
 						results = get_recommendation(search_term,cosine_sim_mat,df,num_of_rec)
-					with st.beta_expander("Results as JSON"):
-						results_json = results.to_dict('index')
-						st.write(results_json)
+						with st.beta_expander("Results as JSON"):
+							results_json = results.to_dict('index')
+							st.write(results_json)
 
-					for row in results.iterrows():
-						rec_title = row[1][0]
-						rec_score = row[1][1]
-						rec_url = row[1][2]
-						rec_price = row[1][3]
-						rec_num_sub = row[1][4]
+						for row in results.iterrows():
+							rec_title = row[1][0]
+							rec_score = row[1][1]
+							rec_url = row[1][2]
+							rec_price = row[1][3]
+							rec_num_sub = row[1][4]
 
 						# st.write("Title",rec_title,)
-						stc.html(RESULT_TEMP.format(rec_title,rec_score,rec_url,rec_url,rec_num_sub),height=350)
+							stc.html(RESULT_TEMP.format(rec_title,rec_score,rec_url,rec_url,rec_num_sub),height=350)
 				
 
 
